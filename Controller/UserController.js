@@ -57,5 +57,27 @@ class UserController{
             });
         }
     }
+    static async getUsernameController(req,res,next){
+        try{
+           
+            let data = await UserService.getUsernameService(req);
+            console.log(data);
+            res.status(200).json({
+                status:"SUCCESS",
+                error:null,
+                data:data
+            })
+        }catch(e){
+            res.status(200).json({
+                status:"FAILED",
+                error:{
+                    e:e,
+                    code:1000,
+                    message:"Get user failed"
+                },
+                data:null
+            });
+        }
+    }
 }
 module.exports = UserController;

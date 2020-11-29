@@ -22,11 +22,10 @@ class CategoryController{
     static async showCategoryController(req,res,next){
         try{
             let data = await CategoryService.showCategoryService(req);
-            res.status(200).json({
-                status:"SUCCESS",
-                error:null,
-                data:data
-            })
+            res.status(200).json(
+               
+                data
+            )
         }catch(e){
             res.status(200).json({
                 status:"FAILED",

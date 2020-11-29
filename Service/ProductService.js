@@ -1,6 +1,7 @@
 const uuid = require("uuid");
 const bcrypt = require("bcrypt");
 const querryBuilder = require("../config/databse");
+const { search } = require("../app");
 
 class ProductService{
     static async createProductService(req,res,next){
@@ -23,7 +24,9 @@ class ProductService{
     static async showFoodByCateService(req,res,next){
         try{
             let param = req.params.idCate;
+         
             let data = await querryBuilder("Food").where("idCategory",param).select();
+            
             return data;
         }catch(e){
             console.log(e);
@@ -39,8 +42,10 @@ class ProductService{
     }
     static async searchFoodService(req,res,next){
         try{
-            let require = req.querry;
-            let data = await querryBuilder("Food").where("nameFood",require.namefood).select();
+            let data1 = req.query.search;
+            
+            
+            let data = await querryBuilder("Food").where("nameFood",'like',data1+"%").select();
             return data;
         }catch(e){
             console.log(e);
@@ -48,7 +53,7 @@ class ProductService{
     }
     static async searchAddressService(req,res,next){
         try{
-            let require = req.querry;
+            let require = req.query;
             let data = await querryBuilder("Food").where("foodAddress",require.address).select();
             return data;
         }catch(e){

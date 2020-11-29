@@ -1,5 +1,5 @@
 const uuid = require("uuid");
-const { queryBuilder } = require("../config/databse");
+const  querryBuilder = require("../config/databse");
 const querry = require("../config/databse");
 class CategoryService{
     static async addCategoryService(req,res,next){
@@ -17,7 +17,7 @@ class CategoryService{
     }
     static async showCategoryService(req,res,next){
         try{
-            let data = await queryBuilder("Category").select();
+            let data = await querryBuilder("foodcategory").select();
             return data;
         }catch(e){
             console.log(e);

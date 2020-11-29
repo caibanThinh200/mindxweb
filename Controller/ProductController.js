@@ -23,11 +23,7 @@ class ProductController{
     static async showFoodByCateController(req,res,next){
         try{
             let data= await ProductService.showFoodByCateService(req);
-            res.status(200).json({
-                status:"SUCCESS",
-                error:null,
-                data:data
-            });
+            res.status(200).json(data);
         }catch(e){
             res.status(200).json({
                 status:"FAILED",
@@ -42,11 +38,11 @@ class ProductController{
     static async showFoodController(req,res,next){
         try{
             let data = await ProductService.showFoodService(req);
-            res.status(200).json({
-                status:"SUCCESS",
-                error:null,
-                data:data
-            });
+            res.status(200).json(
+
+               
+                data
+            );
         }catch(e){
             res.status(200).json({
                 status:"FAILED",
@@ -60,12 +56,9 @@ class ProductController{
     }
     static async searchFoodController(req,res,next){
         try{
+           
             let data = await ProductService.searchFoodService(req);
-            res.status(200).json({
-                status:"SUCCESS",
-                error:null,
-                data:data
-            });
+            res.status(200).json(data);
         }catch(e){
             res.status(200).json({
                 status:"FAILED",

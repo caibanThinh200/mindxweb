@@ -37,6 +37,8 @@ class UserService{
         else{
             const token  = jwt.sign({id:user.UserId,fullname:user.Fullname},JWT_SECRET_KEY,{expiresIn:60*60*8});
             return token;
+            
+           
         }
         }catch(e){
             console.log(e);
@@ -52,5 +54,17 @@ class UserService{
             console.log(e);
         }
     }
-}
+    static async getUsernameService(req,res,next){
+        try{
+            let token = req.header("Authorization").replace('Bearer ','');
+            let checkToken = jwt.verify(token,JWT_SECRET_KEY);
+            let data = await querryBuilder("users").where("UserId",checkToken.id).select("Fullname");
+            return data;
+          }catch(e){
+            console.log(e);
+        }
+    }
+}   
+            
+      
 module.exports = UserService;
