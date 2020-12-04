@@ -20,6 +20,21 @@ class ProductController{
             })
         }
     }
+    static async showFoodByIdController(req,res,next){
+        try{
+            let data= await ProductService.showFoodById(req);
+            res.status(200).json(data);
+        }catch(e){
+            res.status(200).json({
+                status:"FAILED",
+                error:{
+                    code:1000,
+                    message:"show product failed"
+                },
+                data:null
+            })
+        }
+    }
     static async showFoodByCateController(req,res,next){
         try{
             let data= await ProductService.showFoodByCateService(req);

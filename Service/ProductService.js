@@ -21,6 +21,15 @@ class ProductService{
             console.log(e);
         }
     }
+    static async showFoodById(req,res,next){
+        try{
+            let param = req.params.idFood;
+            let data = await querryBuilder("Food").where("idFood",param).select();
+            return data;
+        }catch(e){
+            console.log(e);
+        }
+    }
     static async showFoodByCateService(req,res,next){
         try{
             let param = req.params.idCate;
